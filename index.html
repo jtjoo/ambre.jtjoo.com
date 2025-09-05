@@ -10,47 +10,41 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ambre.jtjoo.com"> <!-- Change this to your final URL -->
+    <meta property="og:url" content="https://ambre.jtjoo.com">
     <meta property="og:title" content="You're Invited! Jintae & Ambre's Wedding">
     <meta property="og:description" content="Join us to celebrate our marriage at the Suwon Museum.">
-    <meta property="og:image" content="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/c8c3aea8-d24c-4a28-9a4b-00284666e548-img_4983_jpg?asset_id=24ddd167-c01a-45f2-88b8-f87f4ea0f208">
+    <meta property="og:image" content="images/Live-Stream-Thumbnail.jpg"> <!-- Using your thumbnail for social sharing -->
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://ambre.jtjoo.com"> <!-- Change this to your final URL -->
-    <meta property="twitter:title" content="You're Invited to wedding! Jintae & Ambre's Wedding">
+    <meta property="twitter:url" content="https://ambre.jtjoo.com">
+    <meta property="twitter:title" content="You're Invited! Jintae & Ambre's Wedding">
     <meta property="twitter:description" content="Join us to celebrate our marriage at the Suwon Museum.">
-    <meta property="twitter:image" content="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/c8c3aea8-d24c-4a28-9a4b-00284666e548-img_4983_jpg?asset_id=24ddd167-c01a-45f2-88b8-f87f4ea0f208">
+    <meta property="twitter:image" content="images/Live-Stream-Thumbnail.jpg"> <!-- Using your thumbnail for social sharing -->
 
     <!-- Google Fonts for Lato and a similar slab serif -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Roboto+Slab:wght@700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- 🎨 CUSTOMIZABLE VARIABLES --- */
+        /* --- CUSTOMIZABLE VARIABLES --- */
         :root {
             --primary-color: #3d343a; /* Dark brown-gray */
             --background-color: #ffffff;
             --text-color: #333333;
             --light-text-color: #ffffff;
             --accent-color: #665760; /* Lighter, muted version */
+            --reminder-bg-color: #fffbe5; /* Light yellow for reminder */
+            --reminder-border-color: #fceec4;
             
-            --title-font: 'Roboto Slab', serif; /* Good free alternative to Museo Slab */
-            --body-font: 'Lato', sans-serif;
+            --title-font: 'Roboto Slab', 'Noto Sans KR', serif;
+            --body-font: 'Lato', 'Noto Sans KR', sans-serif;
         }
 
-        /* --- 🌐 GENERAL STYLES & RESET --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        /* --- GENERAL STYLES & RESET --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: var(--body-font);
             color: var(--text-color);
@@ -58,14 +52,44 @@
             line-height: 1.7;
             font-size: 18px;
         }
-
-        /* --- 🏛️ LAYOUT & STRUCTURE --- */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
+        
+        /* --- LANGUAGE SWITCHER & LOGIC --- */
+        .lang-en [lang="ko"],
+        .lang-ko [lang="en"] {
+            display: none !important;
+        }
+        
+        .lang-switcher {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            gap: 5px;
+        }
+        .lang-switcher button {
+            background: transparent;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-family: var(--body-font);
+            font-size: 14px;
+            border-radius: 15px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            font-weight: bold;
+        }
+        .lang-switcher button.active {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
         }
 
+        /* --- LAYOUT & STRUCTURE --- */
+        .container { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; }
         h1, h2, h3, h4 {
             font-family: var(--title-font);
             color: var(--primary-color);
@@ -73,16 +97,10 @@
             font-weight: 700;
             margin-bottom: 1rem;
         }
+        p { margin-bottom: 1.5rem; }
+        p:last-child { margin-bottom: 0; }
 
-        p {
-            margin-bottom: 1.5rem;
-        }
-        
-        p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* --- 🖼️ HERO SECTION --- */
+        /* --- HERO SECTION --- */
         .hero {
             display: flex;
             flex-direction: column;
@@ -93,55 +111,77 @@
             color: var(--light-text-color);
             background-size: cover;
             background-position: center 34%;
-            background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/c8c3aea8-d24c-4a28-9a4b-00284666e548-img_4983_jpg?asset_id=24ddd167-c01a-45f2-88b8-f87f4ea0f208');
+            background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('images/IMG_4983.JPG');
         }
-
         .hero h1 {
-            font-size: clamp(3rem, 10vw, 5rem); /* Responsive font size */
+            font-size: clamp(3rem, 10vw, 5rem);
             color: var(--light-text-color);
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
-
         .hero p {
             font-size: clamp(1.2rem, 4vw, 1.5rem);
             font-weight: 300;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
-        /* --- 🗓️ WEDDING DETAILS SECTION --- */
-        .wedding-details {
+        /* --- WEDDING DETAILS SECTION --- */
+        .wedding-details { text-align: center; background-color: #f9f9f9; }
+        .wedding-details h3 { font-size: 1.5rem; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .wedding-details .korean-details { font-size: 1.2rem; color: #555; margin-bottom: 1rem; }
+        .wedding-details .address { line-height: 1.8; }
+        
+        .reminder-balloon {
+            position: relative;
+            background-color: var(--reminder-bg-color);
+            border: 1px solid var(--reminder-border-color);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1.5rem auto 0 auto;
+            max-width: 450px;
             text-align: center;
-            background-color: #f9f9f9;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
-        
-        .wedding-details h3 {
-            font-size: 1.5rem;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .wedding-details .korean-details {
-            font-size: 1.2rem;
-            color: #555;
-            margin-bottom: 1rem;
+        .reminder-balloon::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent var(--reminder-bg-color) transparent;
         }
 
         .map-container {
             position: relative;
             overflow: hidden;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            padding-top: 56.25%;
             margin: 2rem 0;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
-
-        .map-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .map-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        
+        .buttons-container {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .livestream-cta {
+            margin-top: 1.5rem;
+            border-top: 1px solid #eee;
+            padding-top: 2.5rem;
             width: 100%;
-            height: 100%;
-            border: 0;
+            max-width: 500px;
+        }
+        .livestream-cta p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1rem;
         }
 
         .button {
@@ -159,168 +199,56 @@
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-
-        .button:hover {
-            background-color: var(--accent-color);
-            transform: translateY(-2px);
-        }
-        
-        .button-attention {
-            animation: pulse 2.5s infinite;
-        }
-
+        .button:hover { background-color: var(--accent-color); transform: translateY(-2px); }
+        .button-attention { animation: pulse 2.5s infinite; }
         @keyframes pulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(61, 52, 58, 0.5);
-            }
-            70% {
-                transform: scale(1.03);
-                box-shadow: 0 0 10px 20px rgba(61, 52, 58, 0);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(61, 52, 58, 0);
-            }
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(61, 52, 58, 0.5); }
+            70% { transform: scale(1.03); box-shadow: 0 0 10px 20px rgba(61, 52, 58, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(61, 52, 58, 0); }
         }
         
-        /* --- 💖 OUR MOMENTS SECTION --- */
-        .our-moments {
-            text-align: center;
-        }
-        
-        .our-moments .story-text {
-            max-width: 70ch; /* Optimal line length for reading */
-            margin: 2rem auto 4rem auto;
-            font-size: 1.1rem;
-        }
+        /* --- OUR MOMENTS SECTION --- */
+        .our-moments { text-align: center; }
+        .our-moments .story-text { max-width: 70ch; margin: 2rem auto 4rem auto; font-size: 1.1rem; }
+        .our-moments .quote { font-family: var(--title-font); font-size: clamp(1.5rem, 5vw, 2rem); color: var(--primary-color); margin-top: 4rem; max-width: 70ch; margin-left: auto; margin-right: auto;}
 
-        .our-moments .quote {
-            font-family: var(--title-font);
-            font-size: clamp(1.5rem, 5vw, 2rem);
-            color: var(--primary-color);
-            margin-top: 4rem;
-        }
+        /* --- OUR STORY SECTION --- */
+        .our-story { padding: 0; }
+        .story-item { width: 100%; margin: 0; }
+        .story-item img { width: 100%; height: auto; display: block; }
+        .story-item-text { max-width: 750px; margin: 0 auto; padding: 3rem 2rem 4rem 2rem; text-align: center; }
+        .story-item-text p { font-size: 1.1rem; line-height: 1.8; }
 
-        /* --- 💖 OUR STORY SECTION (CAROUSEL) --- */
-        .story-carousel {
-            position: relative;
-            background-color: var(--primary-color); /* Fallback color */
-        }
-
-        .story-background {
-            position: sticky;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-size: 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            transition: background-image 0.2s, ease-in-out; /* Smooth transition */
-        }
-
-        .story-content {
-            position: relative; /* To stack on top of the background */
-            z-index: 1;
-        }
-
-        .story-card {
-            min-height: 100vh; /* Make each card tall enough to trigger scroll */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 1.2em;
-            color: white;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-            text-align: center;
-        }
-        
-        .story-card-text-box {
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(2px); /* Frosted glass effect */
-            -webkit-backdrop-filter: blur(2px);
-            padding: 1.2em;
-            border-radius: 10px;
-            max-width: 650px;
-        }
-
-        .story-card-text-box h2 {
-            color: var(--light-text-color);
-        }
-        
-        /* --- 📸 PHOTO GALLERY --- */
-        .photo-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .photo-group {
-            display: grid;
-            gap: 1rem;
-        }
-
+        /* --- PHOTO GALLERY --- */
+        .photo-grid { display: flex; flex-direction: column; gap: 1rem; }
+        .photo-group { display: grid; gap: 1rem; }
         .photo-group img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* This makes images fill the grid area */
+            object-fit: cover;
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             background-color: #eee;
         }
-        
-        .photo-group img:hover {
-            transform: scale(1.03);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-        }
-
-        /* Layout 1: 1 Tall Portrait, 2 Landscapes */
-        .layout-pll {
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-        }
-        .layout-pll img:nth-child(1) {
-            grid-column: 1 / 2;
-            grid-row: 1 / 3;
-        }
-        .layout-pll img:nth-child(2) {
-            grid-column: 2 / 3;
-            grid-row: 1 / 2;
-        }
-        .layout-pll img:nth-child(3) {
-            grid-column: 2 / 3;
-            grid-row: 2 / 3;
-        }
-
-        /* Layout 2: 3 Portraits, 1 Landscape */
-        .layout-pppl {
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: auto auto; /* Two rows */
-        }
+        .photo-group img:hover { transform: scale(1.03); box-shadow: 0 6px 12px rgba(0,0,0,0.2); }
+        .layout-pll { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+        .layout-pll img:nth-child(1) { grid-column: 1 / 2; grid-row: 1 / 3; }
+        .layout-pll img:nth-child(2) { grid-column: 2 / 3; grid-row: 1 / 2; }
+        .layout-pll img:nth-child(3) { grid-column: 2 / 3; grid-row: 2 / 3; }
+        .layout-pppl { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto; }
         .layout-pppl img:nth-child(1) { grid-column: 1 / 2; grid-row: 1 / 2; }
         .layout-pppl img:nth-child(2) { grid-column: 2 / 3; grid-row: 1 / 2; }
         .layout-pppl img:nth-child(3) { grid-column: 3 / 4; grid-row: 1 / 2; }
         .layout-pppl img:nth-child(4) { grid-column: 1 / 4; grid-row: 2 / 3; }
-
-        /* Layout 3: 2 Portraits, 1 Landscape, 1 Portrait */
-        .layout-pplp {
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: auto auto;
-        }
+        .layout-pplp { grid-template-columns: repeat(4, 1fr); grid-template-rows: auto auto; }
         .layout-pplp img:nth-child(1) { grid-column: 1 / 2; grid-row: 1 / 3; }
         .layout-pplp img:nth-child(2) { grid-column: 2 / 3; grid-row: 1 / 3; }
         .layout-pplp img:nth-child(3) { grid-column: 3 / 5; grid-row: 1 / 2; }
         .layout-pplp img:nth-child(4) { grid-column: 3 / 5; grid-row: 2 / 3; }
+        .layout-pp, .layout-ll { grid-template-columns: 1fr 1fr; }
         
-        /* Layout 4: 2 Side-by-side */
-        .layout-pp, .layout-ll {
-            grid-template-columns: 1fr 1fr;
-        }
-        
-        /* --- 🎊 FINAL INVITE SECTION --- */
+        /* --- FINAL INVITE SECTION --- */
         .final-invite {
             display: flex;
             flex-direction: column;
@@ -331,30 +259,20 @@
             color: var(--light-text-color);
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Parallax effect */
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/0c837cbb-0ae8-4dec-a624-e5709cd13017-img_4987_jpg?asset_id=21c2a56d-930c-4e9e-80f1-7904ee9a7633');
+            background-attachment: fixed;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/IMG_4987.JPG');
         }
-
         .final-invite h2, .final-invite h4, .final-invite p {
             color: var(--light-text-color);
             text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
         }
-
-        .final-invite h2 {
-            font-size: clamp(2rem, 8vw, 3.5rem);
-        }
+        .final-invite h2 { font-size: clamp(2rem, 8vw, 3.5rem); }
         
-        /* --- 📜 FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: var(--primary-color);
-            color: var(--light-text-color);
-        }
+        /* --- FOOTER --- */
+        footer { text-align: center; padding: 2rem; background-color: var(--primary-color); color: var(--light-text-color); }
 
         /* --- Responsive Adjustments --- */
         @media (max-width: 768px) {
-           /* On smaller screens, stack all grid items in one column */
            .photo-group,
            .layout-pll, .layout-pppl, .layout-pplp, .layout-pp, .layout-ll {
                 grid-template-columns: 1fr;
@@ -367,180 +285,194 @@
                 grid-row: auto;
            }
         }
-
-        @media (max-width: 480px) {
-            /* No change needed, already single column */
-        }
     </style>
 </head>
-<body>
+<body class="lang-en"> <!-- Start with English as default -->
+
+    <div class="lang-switcher">
+        <button id="lang-en">English</button>
+        <button id="lang-ko">한국어</button>
+    </div>
 
     <!-- Hero Section: Main title and background image -->
     <header class="hero">
         <h1>Jintae & Ambre</h1>
-        <p>We're getting married!</p>
+        <p>
+            <span lang="en">We're getting married!</span>
+            <span lang="ko">저희 결혼합니다</span>
+        </p>
     </header>
 
     <main>
         <!-- Wedding Details Section -->
         <section class="wedding-details">
             <div class="container">
-                <h2>We're Getting Married!</h2>
+                <h2>
+                    <span lang="en">The Wedding</span>
+                    <span lang="ko">결혼식 안내</span>
+                </h2>
                 <h3>Suwon Museum</h3>
-                <h4>Friday, October 3rd, 2025 at 4:00 PM (3am EST)</h4>
-                <p class="korean-details">2025년 10월 3일 오후 4시, 수원박물관</p>
-                <p>265 Changnyong-daero, Yeongtong-gu, Suwon-si, Gyeonggi-do<br>경기 수원시 영통구 창룡대로 265</p>
+                <h4>
+                    <span lang="en">Friday, October 3rd, 2025 at 4:00 PM</span>
+                    <span lang="ko">2025년 10월 3일 금요일 오후 4시</span>
+                </h4>
+                <p class="korean-details">수원박물관</p>
+                <p class="address">
+                    <span lang="en">265 Changnyong-daero, Yeongtong-gu, Suwon-si, Gyeonggi-do</span>
+                    <br>
+                    <span lang="ko">경기 수원시 영통구 창룡대로 265</span>
+                </p>
+
+                <div class="reminder-balloon">
+                    <p lang="en"><b>Reminder:</b> It's the <b>Suwon Museum</b>, not the Suwon Gwanggyo Museum!</p>
+                    <p lang="ko"><b>헷갈리지 마세요!</b> 수원광교박물관이 아닌 <b>수원박물관</b>입니다!</p>
+                </div>
                 
                 <div class="map-container">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3175.027282845341!2d127.0617637156157!3d37.2713833491419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b43a91a1a729b%3A0x2863412b23a5e849!2sSuwon%20Museum!5e0!3m2!1sen!2skr!4v1662322941548!5m2!1sen!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
 
-                <a href="https://smuseum.suwon.go.kr/sw/contents/view?contentsNo=111&menuLevel=2&menuNo=60" class="button button-attention" target="_blank" rel="noopener noreferrer">Directions / 오시는 길</a>
+                <div class="buttons-container">
+                    <a href="https://smuseum.suwon.go.kr/sw/contents/view?contentsNo=111&menuLevel=2&menuNo=60" class="button button-attention" target="_blank" rel="noopener noreferrer">Directions / 오시는 길</a>
+                    
+                    <div class="livestream-cta">
+                        <p lang="en">Can't come? Watch Live Stream!</p>
+                        <p lang="ko">라이브 생중계도 합니다!</p>
+                        <a href="https://www.youtube.com/live/BJ12OKQ6lNw" class="button" target="_blank" rel="noopener noreferrer">
+                            <span lang="en">Watch Live Stream</span>
+                            <span lang="ko">라이브 스트리밍 보기</span>
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </section>
 
         <!-- Our Moments Section -->
         <section class="our-moments">
             <div class="container">
-                <h2>Our Moments</h2>
-                <p class="story-text">Over the past three years, we have spent many amazing moments together. Sometimes joyful, sometimes silly, sometimes cute. Overall, these moments have been truly happy. We have struggles in our lives, but we always have each other and we know we can deal with any challenges together. While our pasts may have been difficult, together we can heal and grow.</p>
+                <h2>
+                    <span lang="en">Our Moments</span>
+                    <span lang="ko">우리의 순간들</span>
+                </h2>
+                <div class="story-text">
+                    <p lang="en">Over the past three years, we’ve shared countless unforgettable moments—some joyful, some silly, and some simply sweet. Although life has tested us, we’ve always had each other, and together we can take on any challenge. Our pasts may have been difficult, but side by side, we continue to heal and grow.</p>
+                    <p lang="ko">지난 3년 동안 저희는 셀 수 없이 많은 잊지 못할 순간들을 함께했습니다. 때로는 즐겁고, 때로는 바보 같고, 때로는 그저 달콤한 순간들이었습니다. 삶이 저희를 시험하기도 했지만, 저희는 항상 서로의 곁을 지켰고 함께라면 어떤 어려움도 이겨낼 수 있습니다. 과거는 힘들었을지 모르지만, 나란히 함께하며 저희는 계속해서 치유하고 성장하고 있습니다.</p>
+                </div>
                 <div class="photo-grid">
-                    
-                    <!-- Group 1 -->
-                    <div class="photo-group layout-pll">
-                        <img src="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/102bf472-3eb2-47ca-85d2-3282495d0d7f-img_4985_jpg?asset_id=2dc94d87-4664-4815-b42f-35b9ef0c61c0" alt="Jintae and Ambre in a vertical photo">
-                        <img src="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/86ce147a-0e25-452d-ac0f-ed65dda62121-img_3428_jpg?asset_id=bd7690d5-c965-4cf8-836b-dcb04e3d2988" alt="Happy moment in landscape">
-                        <img src="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/59c4d8d5-0403-4379-8547-35d3be784280-img_3725_jpg?asset_id=90c18cdf-5468-4f4a-9c78-ba1d9f0f63b0" alt="Another happy moment in landscape">
-                    </div>
-
-                    <!-- Group 2 -->
-                    <div class="photo-group layout-pppl">
-                        <img src="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/e088a853-89ae-4858-9801-c1e55995cafb-img_0013_jpg?asset_id=30d09280-7766-4b33-95fd-bdb66bc9f4f9" alt="Couple posing outdoors">
-                        <img src="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/97982b39-deec-4886-9f1d-488e64f197fd-kakaotalk_20?asset_id=1cec878b-68c6-4e3a-8dc5-22c4bfe2f5f2" alt="Candid photo of the couple">
-                        <img src="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/664b51f9-7aeb-451c-b17b-621a9bf3e541-kakaotalk_20?asset_id=68aa85a6-883c-4671-946e-0b286e81f2d9" alt="Another vertical candid photo">
-                    </div>
-
-                    <!-- Group 3 -->
-                    <div class="photo-group layout-pll">
-                        <img src="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/22200122-d936-48b9-9ecf-3d18cbea50c6-img_5201_jpg?asset_id=a7760f81-d630-427c-b8e5-ddaf2a001dde" alt="Family picture moment">
-                        <img src="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/a3776311-28a2-4430-a914-836b16aa151e-kakaotalk_20?asset_id=63d1542a-ac69-498f-9e57-5f0802eb66e5" alt="Jintae and Ambre at an event">
-                        <img src="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/18a8bcf9-53c9-49fc-b2d8-9b9226d08c96-kakaotalk_20?asset_id=88ba5c72-8209-4ff6-b220-7fc5dae84dcb" alt="Photo from a trip">
-                    </div>
-
-                    <!-- Group 4 -->
-                     <div class="photo-group layout-pplp">
-                        <img src="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/11e45ff2-a367-49f4-996a-5bf1a904dda0-kakaotalk_20?asset_id=94c8bbd3-ee87-4aad-bdc4-c53ddeb0bd0a" alt="Couple together in portrait">
-                        <img src="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/c5b52a97-052e-4781-9c5b-09ab1aa8505d-kakaotalk_20?asset_id=cc275e80-fd89-4e15-98d9-79a12ca51759" alt="Another couple photo in portrait">
-                        <img src="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/49824923-5082-4d82-962e-eef90c14df9f-kakaotalk_20?asset_id=a72b2887-7cd9-4bad-95df-af4762a7471a&size=843" alt="Selfie of the couple">
-                        <img src="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/266c5f6f-db9b-4757-a50d-dc33940205e0-kakaotalk_20?asset_id=2c13ddc6-e248-460d-8c2a-f8b0505cefb0&size=810" alt="Square photo of a special moment">
-                    </div>
-
-                    <!-- Group 5 -->
-                    <div class="photo-group layout-pp">
-                        <img src="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/976d1029-34be-44f5-92eb-1ab62e070141-kakaotalk_20?asset_id=1b1c90ad-24b3-4740-9e65-130bb9b030ca&size=828" alt="Square image of the couple">
-                        <img src="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/9565bc01-af59-4233-b7e0-23cc35402bef-kakaotalk_20?asset_id=ed8dc5a2-46d8-4a42-8346-e01b89e5536a" alt="Portrait of couple smiling">
-                    </div>
-                    
-                    <!-- Group 6 -->
-                    <div class="photo-group layout-ll">
-                        <img src="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/df22afbf-2b9a-44f5-8ba6-7c43cef78a4f-kakaotalk_20?asset_id=4966834e-a3a0-48af-bfdb-293e0b425e0a" alt="Couple sharing a laugh">
-                        <img src="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/7f0b3970-b4ef-42ac-81d1-1a84e5e73ad6-kakaotalk_20?asset_id=8f6a9e90-912b-47bd-ab31-cdf28ab81d62" alt="Beautiful landscape featuring the couple">
-                    </div>
+                    <!-- Photo grid with updated local paths -->
+                    <div class="photo-group layout-pll"><img src="images/IMG_4985.JPG" alt="Jintae and Ambre in a vertical photo"><img src="images/IMG_3428.JPG" alt="Happy moment in landscape"><img src="images/IMG_3725.JPG" alt="Another happy moment in landscape"></div>
+                    <div class="photo-group layout-pppl"><img src="images/IMG_0013.JPG" alt="Couple posing outdoors"><img src="images/handsonwater.jpg" alt="Candid photo of the couple"><img src="images/holdinghands.jpg" alt="Another vertical candid photo"><img src="images/IMG_4843.JPG" alt="Wide landscape shot"></div>
+                    <div class="photo-group layout-pll"><img src="images/IMG_5201.JPG" alt="Family picture moment"><img src="images/atthepark.jpg" alt="Jintae and Ambre at an event"><img src="images/inthebeach.jpg" alt="Photo at the arch"></div>
+                    <div class="photo-group layout-pplp"><img src="images/attheairport.jpg" alt="Couple together in airport"><img src="images/atthejejucafe.jpg" alt="Another couple photo in portrait"><img src="images/atthephotoarc.jpg" alt="Selfie of the couple at the cafe"><img src="images/couplering.jpg" alt="Square photo of a special moment"></div>
+                    <div class="photo-group layout-pp"><img src="images/sillysunglasses.jpg" alt="Couple with silly sunglasses"><img src="images/ourhandstogether.jpg" alt="Our hands together"></div>
+                    <div class="photo-group layout-ll"><img src="images/ambrekissesjintae.jpg" alt="Couple sharing a laugh"><img src="images/jintaekissambre.jpg" alt="Beautiful landscape featuring the couple"></div>
 
                 </div>
-                <p class="quote">We will stay positive and live a happy life</p>
+                <p class="quote">
+                    <span lang="en">As we look ahead, we know that whatever life brings, we’ll face it together—stronger, happier, and more in love than ever. We can’t wait to celebrate our wedding day with you.</span>
+                    <span lang="ko">앞날을 내다보며 저희는 삶이 어떤 것을 가져다주든, 그 어느 때보다 더 강하고, 더 행복하고, 더 사랑하며 함께 맞설 것임을 압니다. 여러분과 함께 저희의 결혼식을 축하하는 날을 고대하고 있습니다.</span>
+                </p>
             </div>
         </section>
 
         <!-- Our Story Section -->
-        <section class="story-carousel">
-            <div class="story-background"></div>
-            <div class="story-content">
-
-                <div class="story-card" data-bg-img="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/2ca2f620-df59-4932-9807-f310524a853c-img_5597_jpg?asset_id=11e2c26e-52b2-4939-9aa8-ed623ff5c5b4">
-                    <div class="story-card-text-box">
-                        <p>Believe or not, we've met on social dating app. We were matched because we had a lot of common. Both divorced, been through cancer, have kids, both like sci-fi, fantasy, music and art, gaming stuffs.</p>
-                    </div>
+        <section class="our-story ">
+             <div class="container">
+                <h2>
+                    <span lang="en">Our Story</span>
+                    <span lang="ko">우리의 이야기</span>
+                </h2>
+            </div>
+            
+            <div class="story-item">
+                <img src="images/IMG_5597.JPG" alt="Story image 1">
+                <div class="story-item-text">
+                    <p lang="en">Believe it or not, we met on a dating app. We matched because we had so much in common: both divorced, both cancer survivors, both parents. Through late-night chats, we discovered shared passions—sci-fi, fantasy, music, art, gaming, and so much more.</p>
+                    <p lang="ko">믿거나 말거나, 저희는 데이팅 앱에서 만났습니다. 공통점이 많아 만나게 됐죠. 둘 다 이혼 경험이 있고, 암을 이겨냈으며, 부모라는 점까지요. 매일 밤늦게까지 대화를 나누며 저희는 공상과학, 판타지, 음악, 예술, 게임 등 수많은 공통된 관심사를 발견했습니다.</p>
                 </div>
-
-                <div class="story-card" data-bg-img="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/f09b6825-f946-4f81-8d42-20a73af8b51b-kakaotalk_20?asset_id=0a9020c5-f7a6-456a-a867-4ac6b44a4f4e">
-                    <div class="story-card-text-box">
-                        <p>We tried not to rush our relationship too fast. But our emotion made us get together pretty sooner than we thought.</p>
-                    </div>
+            </div>
+            <div class="story-item">
+                <img src="images/IMG_5609.JPG" alt="Story image 2">
+                <div class="story-item-text">
+                    <p lang="en">We were cautious at first, determined not to rush. But our emotions grew faster than we expected, and before we knew it, we were inseparable—because we fit together perfectly.</p>
+                    <p lang="ko">처음에는 우리 관계를 서두르지 않으려 했어요. 그러나 저희는 예상보다 빨리 가까워졌고, 어느새 저희는 완벽하게 맞는 커플이라는걸 깨달았고, 이제는 떨어질 수 없는 사이가 되었습니다.</p>
                 </div>
-
-                <div class="story-card" data-bg-img="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/191fa72d-b7b3-4238-a95b-a02bce44c4b8-kakaotalk_20?asset_id=f30e16f1-7d1d-4de3-baaf-ac03c3d8ab48">
-                    <div class="story-card-text-box">
-                         <p>Because... we felt we fit perfect each other.</p>
-                    </div>
+            </div>
+            <div class="story-item">
+                <img src="images/IMG_5641.JPG" alt="Story image 3">
+                <div class="story-item-text">
+                     <p lang="en">An important bond we share is the courage to heal one another’s wounds.</p>
+                     <p lang="ko">우리 관계를 지속시켜주는 중요한 것은 서로의 상처를 치유해주는 용기에요.</p>
                 </div>
-
-                <div class="story-card" data-bg-img="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/764fd890-34e0-4356-8c30-e723a5b7a796-kakaotalk_20?asset_id=14de61e3-4ac9-4057-85d8-5ccc804d5498">
-                    <div class="story-card-text-box">
-                        <p>Important thing we had in common was, we both had painful past. But we could heal each other's wounds.</p>
-                     </div>
+            </div>
+            <div class="story-item">
+                <img src="images/couplering.jpg" alt="Story image 4">
+                <div class="story-item-text">
+                    <p lang="en">We summed it up in on simple phrase: “Even dark night can shine.”</p>
+                    <p lang="ko">저희는 그것을 “어두운 밤도 빛날 수 있다”는 한마디로 새겼어요.</p>
+                 </div>
+            </div>
+            <div class="story-item">
+                <img src="images/IMG_0013.JPG" alt="Story image 5">
+                <div class="story-item-text">
+                    <p lang="en">To us, it’s a reminder that, even in our darkest hours, we will always light the way for each other.</p>
+                    <p lang="ko">이것은 저희에게 가장 어두운 시간 속에서도 서로를 위해 항상 길을 밝혀줄 것이라는 마음의 징표입니다.</p>
                 </div>
-                
-                <div class="story-card" data-bg-img="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/284641be-21ea-4823-9ad9-149d2dca02f7-kakaotalk_20?asset_id=a80778a3-5515-4998-b041-7a1dfc9fe2ea">
-                    <div class="story-card-text-box">
-                        <p>And we put that it into words,</p>
-                        <p>"Even dark night can shine"</p>
-                    </div>
+            </div>
+            <div class="story-item">
+                <img src="images/IMG_7806.JPG" alt="Story image 6">
+                <div class="story-item-text">
+                    <p lang="en">And our love extends beyond the two of us. We’ve built a family with Ambre’s children:</p>
+                    <p lang="ko">그리고 저희의 사랑은 저희 둘을 넘어서서, 앰버의 아이들과 함께 새로운 가족을 이루었습니다:</p>
                 </div>
-
-                <div class="story-card" data-bg-img="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/fe270c9c-679b-4150-9575-8f838eb912bb-img_0013_jpg?asset_id=e2026f7c-8e97-4764-9769-5d251ee47871">
-                    <div class="story-card-text-box">
-                        <p>It is reminder of that "I can shine even from the dark, because this person will always be with me."</p>
-                    </div>
+            </div>
+            <div class="story-item">
+                <img src="images/IMG_7569.JPG" alt="Story image 7">
+                <div class="story-item-text">
+                    <p lang="en">In June 2023, we traveled to Kalamazoo, Michigan, with pride to watch Ambre’s youngest son, Edric, graduate from middle school.</p>
+                    <p lang="ko">2023년 6월, 저희는 앰버의 막내아들 에드릭의 중학교 졸업식을 자랑스럽게 지켜보기 위해 미시간주 칼라마주에 방문했어요.</p>
                 </div>
-
-                <div class="story-card" data-bg-img="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/44709832-8562-4055-a631-292d62d8453a-img_7569_jpg?asset_id=a482f84d-331a-45b3-af74-3a9fa320e91a">
-                    <div class="story-card-text-box">
-                        <p>And it's not just us, we built new family with Ambre's kids. For Ambre's youngest son Edric's graduation, we visited Kalamazoo, Michigan in 2023, June.</p>
-                    </div>
+            </div>
+            <div class="story-item">
+                <img src="images/IMG_7550.JPG" alt="Story image 8">
+                <div class="story-item-text">
+                    <p lang="en">Jintae has embraced Rowan, Thea, and Edric with all his heart, striving every day to be the best stepfather he can be.</p>
+                    <p lang="ko">진태는 로완, 테아, 에드릭을 진심으로 자기 아이들처럼 마음속에 품었고, 최고의 새아빠가 되기 위해 매일 노력하고 있습니다.</p>
                 </div>
-
-                <div class="story-card" data-bg-img="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/a8445f44-f04e-4041-931a-f3964064aa7b-img_7550_jpg?asset_id=4e9f953f-3be8-454a-bebe-a5a1dc44251d">
-                    <div class="story-card-text-box">
-                        <p>Jintae has met all of her children. Rowan, Thea, Edric. Jintae have been tried to build good relationship with them. And we believe he became good stepfather.</p>
-                    </div>
+            </div>
+            <div class="story-item">
+                <img src="images/IMG_3531.JPG" alt="Story image 9">
+                <div class="story-item-text">
+                    <p lang="en">This February, we welcomed our first grandchild—Ambrose, baby to Rowan. Our family keeps growing: two daughters, two sons, and one grandson.</p>
+                    <p lang="ko">그리고 올해 2월, 저희는 첫 손주인 앰브로스를 맞이했습니다. 로완의 아들이에요. 저희 가족은 계속해서 성장하고 있습니다. 두 딸, 두 아들, 그리고 한 명의 손주까지요!</p>
                 </div>
-
-                <div class="story-card" data-bg-img="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/0300e34d-6f77-4321-b211-8535e2180620-img_3511_jpg?asset_id=53a4560c-75a8-4914-a408-89a9cc93d08c">
-                    <div class="story-card-text-box">
-                        <p>And we visited them again, this year. February, 2025.</p>
-                    </div>
-                </div>
-
-                <div class="story-card" data-bg-img="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/02a37d57-2210-4f0c-96e8-03600d5a0e89-img_3531_jpg?asset_id=c7d658de-1556-4310-b66a-0abb9322d5da">
-                    <div class="story-card-text-box">
-                        <p>And we have met our grandson! Rowan's baby.</p>
-                        <p>Now we have two daughters and two sons, and one grandson.</p>
-                    </div>
-                </div>
-
-                <div class="story-card" data-bg-img="https://new.express.adobe.com/webpage/HDdWmNTe3JgRM/resources/8d613d1a-0fdf-4029-8868-4ec27f1ad3ef-img_4983_jpg?asset_id=e454a70a-61be-43f8-83bb-04616705de7f">
-                    <div class="story-card-text-box">
-                        <p>And we are going forward, even though there are many struggles in our life. together we are strong.</p>
-                        <h4>We will stay positive, live happy life.<br>Together</h4>
-                    </div>
-                </div>
-
             </div>
         </section>
 
         <!-- Final Invite Section -->
         <section class="final-invite">
             <div class="container">
-                <h2>Please join us to celebrate our marriage!</h2>
-                <h4>Friday, October 3rd, 2025 at 4:00 PM (3am EST)</h4>
-                <p>Suwon Museum, 265 Changnyong-daero, Yeongtong-gu, Suwon-si, Gyeonggi-do<br>경기 수원시 영통구 창룡대로 265</p>
-                
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3175.027282845341!2d127.0617637156157!3d37.2713833491419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b43a91a1a729b%3A0x2863412b23a5e849!2sSuwon%20Museum!5e0!3m2!1sen!2skr!4v1662322941548!5m2!1sen!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <h2>
+                    <span lang="en">Will we see you there?</span>
+                    <span lang="ko">우리, 결혼식에서 만날래요?</span>
+                </h2>
+                <h4>
+                    <span lang="en">Friday, October 3rd, 2025 at 4:00 PM KST (3am EST)</span>
+                    <span lang="ko">2025년 10월 3일 금요일 오후 4시</span>
+                </h4>
+                <div class="buttons-container">
+                    <a href="https://smuseum.suwon.go.kr/sw/contents/view?contentsNo=111&menuLevel=2&menuNo=60" class="button button-attention" target="_blank" rel="noopener noreferrer">Directions / 오시는 길</a>
+                    
+                    <div class="livestream-cta">
+                        <p lang="en">Can't come? Watch Live Stream</p>
+                        <p lang="ko">라이브 생중계도 합니다!</p>
+                        <a href="https://www.youtube.com/live/BJ12OKQ6lNw" class="button" target="_blank" rel="noopener noreferrer">
+                            <span lang="en">Watch Live Stream</span>
+                            <span lang="ko">라이브 스트리밍 보기</span>
+                        </a>
+                    </div>
                 </div>
-
-                <a href="https://smuseum.suwon.go.kr/sw/contents/view?contentsNo=111&menuLevel=2&menuNo=60" class="button" target="_blank" rel="noopener noreferrer">Directions / 오시는 길</a>
             </div>
         </section>
 
@@ -548,49 +480,46 @@
     
     <!-- Footer Section -->
     <footer>
-        <p>With love, Jintae & Ambre</p>
+        <p>
+            <span lang="en">With love, Jintae & Ambre</span>
+            <span lang="ko">사랑을 담아, 진태 & 앰버 드림</span>
+        </p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const storyBackground = document.querySelector('.story-background');
-            const storyCards = document.querySelectorAll('.story-card');
+            const langButtons = {
+                en: document.getElementById('lang-en'),
+                ko: document.getElementById('lang-ko')
+            };
+            const body = document.body;
 
-            // Check if the necessary elements exist
-            if (!storyBackground || storyCards.length === 0) {
-                return; 
-            }
+            const setLanguage = (lang) => {
+                body.classList.remove('lang-en', 'lang-ko');
+                body.classList.add(`lang-${lang}`);
 
-            // Set the initial background image from the first card
-            if (storyCards[0].dataset.bgImg) {
-                storyBackground.style.backgroundImage = `url('${storyCards[0].dataset.bgImg}')`;
-            }
+                Object.values(langButtons).forEach(btn => btn.classList.remove('active'));
+                if (langButtons[lang]) {
+                    langButtons[lang].classList.add('active');
+                }
 
-            const observerOptions = {
-                root: null, // observes intersections relative to the viewport
-                rootMargin: '0px',
-                threshold: 0.5 // Triggers when 50% of the element is visible
+                localStorage.setItem('preferredLanguage', lang);
+                document.documentElement.lang = lang;
             };
 
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const newBg = entry.target.dataset.bgImg;
-                        if (newBg) {
-                            // To avoid flashing, preload the image before setting it as background
-                            const img = new Image();
-                            img.src = newBg;
-                            img.onload = () => {
-                                storyBackground.style.backgroundImage = `url('${newBg}')`;
-                            };
-                        }
-                    }
-                });
-            }, observerOptions);
+            langButtons.en.addEventListener('click', () => setLanguage('en'));
+            langButtons.ko.addEventListener('click', () => setLanguage('ko'));
 
-            storyCards.forEach(card => {
-                observer.observe(card);
-            });
+            const preferredLanguage = localStorage.getItem('preferredLanguage');
+            const browserLanguage = navigator.language.split('-')[0];
+
+            if (preferredLanguage) {
+                setLanguage(preferredLanguage);
+            } else if (browserLanguage === 'ko') {
+                setLanguage('ko');
+            } else {
+                setLanguage('en');
+            }
         });
     </script>
 
