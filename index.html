@@ -145,18 +145,26 @@
             width: fit-content;
             font-size: 1rem;
             color: #000;
-            background-color: white;
-            border: 1px solid var(--reminder-border-color);
-            border-radius: 10px;
             padding: 0.75rem 1rem;
         }
         .donation-info * { margin: 0 auto;}
-        #PayPal.donation-info {
+        .donation-info a {
+            color: white;
+            background-color: teal;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .PayPal-box {
+            margin: 1.5em auto;
+            width:auto;
             background-color: #ffffff;
             border: 1px solid #ccc;
             color: #333;
-            width:auto;
+            background-color: white;
+            border: 1px solid var(--reminder-border-color);
+            border-radius: 10px;
         }
+        .PayPal-box * { margin: 0 auto;}
         .reminder-balloon {
             position: relative;
             color: var(--reminder-text-color);
@@ -367,10 +375,11 @@
                 <h4 class="donation-info">
                     <span lang="en">
                         Donate for Wedding: HANA 253-910254-99907 Jintae Joo<br>
-                        <a href="#PayPal">You can use PayPal to Donate too!</a>
+                        <a class="button" href="#PayPal">You can use PayPal to Donate too!</a>
                     </span>
                     <span lang="ko">
-                        축의금 입금 계좌: 하나은행 253-910254-99907 주진태
+                        축의금 보내실 곳: 하나은행 253-910254-99907 주진태<br>
+                        <a class="button" href="#PayPal">페이팔로도 보내실 수 있어요!</a>
                     </span>
                 </h4>
                 
@@ -519,7 +528,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="donation-info" id="PayPal">
+                <div class="PayPal-box" id="PayPal">
                     <div id="paypal-container-9UHRBWGFLDWHY"></div>
                     <script>
                     paypal.HostedButtons({
