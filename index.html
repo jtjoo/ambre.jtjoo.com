@@ -27,10 +27,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Roboto+Slab:wght@700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
 
+    <script 
+  src="https://www.paypal.com/sdk/js?client-id=BAAMGYp5bNBgaDftHbV9U8BWqnFahbzfvpLzkmISIQXhcE_TgteQLhwdrku2oUsDi2xP6120ZsYIzxtC-0&components=hosted-buttons&disable-funding=venmo&currency=USD">
+</script>
+
     <style>
         /* --- CUSTOMIZABLE VARIABLES --- */
         :root {
             --primary-color: #A63352; /* Pink */
+            --secondary-color: #590202; /* Teal */
             --background-color: #ffffff;
             --text-color: #333333;
             --light-text-color: #ffffff;
@@ -91,12 +96,15 @@
 
         /* --- LAYOUT & STRUCTURE --- */
         .container { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; }
-        h1, h2, h3, h4 {
+        h1, h2 {
             font-family: var(--title-font);
             color: var(--primary-color);
             line-height: 1.3;
             font-weight: 700;
             margin-bottom: 1rem;
+        }
+        h3, h4 {
+            color: var(--secondary-color)
         }
         p { margin-bottom: 1.5rem; }
         p:last-child { margin-bottom: 0; }
@@ -129,16 +137,34 @@
         .wedding-details { text-align: center; background-color: #f9f9f9; }
         .wedding-details h3 { font-size: 1.5rem; margin-top: 1rem; margin-bottom: 0.5rem; }
         .wedding-details .korean-details { font-size: 1.2rem; color: #555; margin-bottom: 1rem; }
-        .wedding-details .address { line-height: 1.8; }
-        
+        .wedding-details .address { line-height: 1.8; margin-bottom: 0.4em; }
+
+        /* --- DONATION INFO SECTION */
+        .donation-info {
+            margin: 1.5em auto;
+            width: fit-content;
+            font-size: 1rem;
+            color: #000;
+            background-color: #01b4c1;
+            border: 1px solid var(--reminder-border-color);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+        }
+        .donation-info * { margin: 0 auto;}
+        #PayPal.donation-info {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            color: #333;
+            width:auto;
+        }
         .reminder-balloon {
             position: relative;
             color: var(--reminder-text-color);
             background-color: var(--reminder-bg-color);
             border: 1px solid var(--reminder-border-color);
             border-radius: 10px;
-            padding: 1rem;
-            margin: 1.5rem auto 0 auto;
+            padding: 0;
+            margin: 0 auto;
             max-width: 450px;
             text-align: center;
             font-size: 0.95rem;
@@ -327,9 +353,9 @@
                     <span lang="en">Friday, October 3rd, 2025 at 4:00 PM</span>
                     <span lang="ko">2025년 10월 3일 금요일 오후 4시</span>
                 </h4>
+
                 <p class="address">
                     <span lang="en">265 Changnyong-daero, Yeongtong-gu, Suwon-si, Gyeonggi-do</span>
-                    <br>
                     <span lang="ko">경기 수원시 영통구 창룡대로 265</span>
                 </p>
 
@@ -337,6 +363,16 @@
                     <p lang="en"><b>Reminder:</b> It's the <b>Suwon Museum</b>, not the Suwon Gwanggyo Museum!</p>
                     <p lang="ko"><b>헷갈리지 마세요!</b> 수원광교박물관이 아닌 <b>수원박물관</b>입니다!</p>
                 </div>
+                
+                <h4 class="donation-info">
+                    <span lang="en">
+                        Donate for Wedding: HANA 253-910254-99907 Jintae Joo<br>
+                        <a href="#PayPal">You can use PayPal to Donate too!</a>
+                    </span>
+                    <span lang="ko">
+                        축의금 입금 계좌: 하나은행 253-910254-99907 주진태
+                    </span>
+                </h4>
                 
                 <div class="map-container">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12695.59255507817!2d127.01626098715818!3d37.2975479!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b5c9f31d1057f%3A0xd665dbb6b1b1549!2sSuwon%20Museum!5e0!3m2!1sen!2skr!4v1757053526823!5m2!1sen!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -419,7 +455,7 @@
             <div class="story-item">
                 <img src="images/couplering.jpg" alt="Story image 4">
                 <div class="story-item-text">
-                    <p lang="en">We summed it up in on simple phrase: “Even dark night can shine.”</p>
+                    <p lang="en">We summed it up in one simple phrase: “Even dark night can shine.”</p>
                     <p lang="ko">저희는 그것을 “어두운 밤도 빛날 수 있다”는 한마디로 새겼어요.</p>
                  </div>
             </div>
@@ -483,6 +519,14 @@
                         </a>
                     </div>
                 </div>
+                <div class="donation-info" id="PayPal">
+                    <div id="paypal-container-9UHRBWGFLDWHY"></div>
+                    <script>
+                    paypal.HostedButtons({
+                        hostedButtonId: "9UHRBWGFLDWHY",
+                    }).render("#paypal-container-9UHRBWGFLDWHY")
+                    </script>
+                </div>
             </div>
         </section>
 
@@ -532,6 +576,7 @@
             }
         });
     </script>
+
 
 </body>
 </html>
